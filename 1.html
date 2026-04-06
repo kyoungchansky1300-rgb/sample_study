@@ -1,42 +1,146 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>기사 페이지</title>
-  <style>
-    /* 읽기 편하게 최소한의 간격만 추가했습니다. */
-    body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-    main { display: flex; gap: 20px; } /* 본문과 사이드바 가로 배치 */
-    article { flex: 3; }
-    aside { flex: 1; background: #f4f4f4; padding: 10px; }
-    footer { margin-top: 20px; border-top: 1px solid #ccc; text-align: center; }
-  </style>
+<meta charset="UTF-8">
+<title>폼 이벤트 UI</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #f0f2f5;
+    }
+
+    .container {
+        display: flex;
+        max-width: 900px;
+        margin: 50px auto;
+        gap: 20px;
+    }
+
+    main {
+        flex: 2;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    aside {
+        flex: 1;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #45a049;
+    }
+
+    #clickBtn {
+        background: #2196F3;
+    }
+
+    #clickBtn:hover {
+        background: #1976D2;
+    }
+
+    #liveText {
+        margin-top: 10px;
+        color: #555;
+        font-size: 14px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 30px;
+        padding: 15px;
+        color: #777;
+    }
+</style>
 </head>
+
 <body>
 
-  <header>
-    <nav>
-      <a href="#home">홈</a>
-    </nav>
-  </header>
+<div class="container">
 
-  <main>
-    <article>
-      <h1>기사 제목</h1>
-      <section>
-        <p>내용이 들어가는 곳입니다.</p>
-      </section>
-    </article>
+    <main>
+        <h1>폼 이벤트 테스트</h1>
+
+        <form id="myForm">
+            <label>이름</label>
+            <input type="text" id="nameInput" placeholder="이름 입력">
+
+            <p id="liveText">입력하면 여기에 표시됩니다</p>
+
+            <button type="submit">제출하기</button>
+        </form>
+
+        <button id="clickBtn">클릭 테스트</button>
+    </main>
 
     <aside>
-      관련 정보
+        <h3>설명</h3>
+        <p>✔ 실시간 입력 감지</p>
+        <p>✔ 클릭 이벤트</p>
+        <p>✔ 폼 제출 처리</p>
     </aside>
-  </main>
 
-  <footer>
-    <p>&copy; 2026 회사명</p>
-  </footer>
+</div>
+
+<footer>
+    © 2026 Web Practice
+</footer>
+
+<script>
+    // 클릭 이벤트
+    document.getElementById("clickBtn").addEventListener("click", function() {
+        alert("클릭 완료!");
+    });
+
+    // 실시간 입력
+    const input = document.getElementById("nameInput");
+    const liveText = document.getElementById("liveText");
+
+    input.addEventListener("input", function() {
+        liveText.textContent = "입력 중: " + input.value;
+    });
+
+    // 폼 제출
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        if(input.value === "") {
+            alert("이름을 입력하세요!");
+        } else {
+            alert(input.value + "님 제출 완료!");
+        }
+    });
+</script>
 
 </body>
 </html>
