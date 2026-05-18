@@ -1,4 +1,5 @@
 	import { useState, useEffect } from 'react';
+	import UserCard from './components/UserCard';
 	
 	function UserProfile() {
 	  const [user, setUser] = useState(null);
