@@ -36,4 +36,4 @@
 	  );
 	}
 	
-	export default UserProfile;
+	export default UserProfile; 
